@@ -414,7 +414,7 @@ public OnPlayerText(playerid, text[])
 	forward admsys_OnPlayerText(playerid, text[]);
 #endif
 
-#if !defined YCMD && !defined _I_ZCMD_INCLUDED
+#if !defined YCMD && !defined _I_ZCMD_INCLUDED && !defined PAWNCMD_INC_
 	public OnPlayerCommandText(playerid, cmdtext[])
 	{
 		new cmd[32], pos;
@@ -1530,7 +1530,7 @@ admsys_cmd_eject(playerid, const params[])
 				{
 					RemovePlayerFromVehicle(giveid);
 					GetPlayerName(giveid, strname2, sizeof strname2);
-					format(strtmp, sizeof strtmp, "You removedВ %s[%d] from vehicle", strname2, giveid);
+					format(strtmp, sizeof strtmp, "You removedÐ’Â %s[%d] from vehicle", strname2, giveid);
 					SendClientMessage(playerid, ADMSYS_DEFAULT_COLOR, strtmp);
 					format(strtmp, sizeof strtmp, "Administrator %s removed you from vehicle", strname);
 					SendClientMessage(giveid, ADMSYS_DEFAULT_COLOR, strtmp);
@@ -1784,13 +1784,13 @@ admsys_cmd_kick(playerid, const params[])
 		CallRemoteFunction("OnPlayerKick", "iii", giveid, playerid, false);
 		GetPlayerName(playerid, strname, sizeof strname);
 		GetPlayerName(giveid, strname2, sizeof strname2);
-		format(strtmp, sizeof strtmp, "AdministratorВ %s has kicked %s[%d]. Reason: %s", strname, strname2, giveid, params[pos]);
+		format(strtmp, sizeof strtmp, "AdministratorÐ’Â %s has kicked %s[%d]. Reason: %s", strname, strname2, giveid, params[pos]);
 		#if ADMSYS_SEND_ACTION_MSGS_TO_ALL
 			SendClientMessageToAll(ADMSYS_DEFAULT_COLOR, strtmp);
 		#else
 			SendMessageToAdmins(2, ADMSYS_DEFAULT_COLOR, strtmp);
 		#endif
-		format(strtmp, sizeof strtmp, "AdministratorВ %s has kicked you. Reason: %s", strname, params[pos]);
+		format(strtmp, sizeof strtmp, "AdministratorÐ’Â %s has kicked you. Reason: %s", strname, params[pos]);
 		SendClientMessage(giveid, ADMSYS_DEFAULT_COLOR, strtmp);
 		SetTimerEx("KickWithDelay", 500, 0, "i", giveid);
 	}
@@ -2059,7 +2059,7 @@ admsys_cmd_gethere(playerid, const params[])
 					GetPlayerName(giveid, strname2, sizeof strname2);
 					format(strtmp, sizeof strtmp, "You teleported %s[%d] to himself", strname2, giveid);
 					SendClientMessage(playerid, ADMSYS_DEFAULT_COLOR, strtmp);
-					format(strtmp, sizeof strtmp, "AdministratorВ %s teleported you to himself", strname);
+					format(strtmp, sizeof strtmp, "AdministratorÐ’Â %s teleported you to himself", strname);
 					SendClientMessage(giveid, ADMSYS_DEFAULT_COLOR, strtmp);
 				}
 			}
@@ -2204,13 +2204,13 @@ admsys_cmd_spawn(playerid, const params[])
 					if(IsPlayerSpectating(giveid)) TogglePlayerSpectating(giveid, 0);
 					else SpawnPlayer(giveid);
 					GetPlayerName(giveid, strname2, sizeof strname2);
-					format(strtmp, sizeof strtmp, "AdministratorВ %s has spawned %s[%d]", strname, strname2, giveid);
+					format(strtmp, sizeof strtmp, "AdministratorÐ’Â %s has spawned %s[%d]", strname, strname2, giveid);
 					#if ADMSYS_SEND_ACTION_MSGS_TO_ALL
 						SendClientMessageToAll(ADMSYS_DEFAULT_COLOR, strtmp);
 					#else
 						SendMessageToAdmins(3, ADMSYS_DEFAULT_COLOR, strtmp);
 					#endif
-					format(strtmp, sizeof strtmp, "AdministratorВ %s has spawned you", strname);
+					format(strtmp, sizeof strtmp, "AdministratorÐ’Â %s has spawned you", strname);
 					SendClientMessage(giveid, ADMSYS_DEFAULT_COLOR, strtmp);
 				}
 			}
